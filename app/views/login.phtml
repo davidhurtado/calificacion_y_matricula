@@ -1,0 +1,58 @@
+<?php
+//Cargar el header de la pagina de Guest -->
+$G->title = "Login";
+loadView("guest/header.phtml");
+?>
+<body class="blue darken-4">
+  <div id="login-page" class="row">
+    <div class="col s12 z-depth-4 card-panel blue-text darken-4">
+        <form class="login-form blue-text darken-4" method="post">
+        <div class="row">
+          <div class="input-field col s12 center">
+              <p class="center login-form-text">Login - Matriculas y Notas</p>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12 ">
+            <i class="mdi-social-person-outline prefix blue-text darken-4"></i>
+            <input id="username" name="user" type="text">
+            <label for="username" class="center-align blue-text darken-4">Usuario</label>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-action-lock-outline prefix blue-text darken-4"></i>
+            <input id="password" name="pass" type="password">
+            <label for="password" class="center-align blue-text darken-4">Password</label>
+          </div>
+        </div>
+        <div class="row">          
+          <div class="input-field col s12 m12 l12  login-text">
+                                    <?php
+
+                if( !empty($G->error) && $G->error != "ok" ){
+                    ?>
+                <div class="alert alert-danger"><p><?php echo $G->error; ?></p></div>
+                <?php
+                }
+                ?>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+              <button type="submit" class="btn waves-effect blue darken-4 col s12">Ingresar</button>  
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 m12 l12">
+              <p class="margin center-align medium-small"><a href="#">Olv&iacute;daste la password ?</a></p>
+          </div>          
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+<?php
+loadView("guest/footer.phtml");
+?>

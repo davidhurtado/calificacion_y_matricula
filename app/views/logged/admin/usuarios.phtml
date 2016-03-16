@@ -1,0 +1,115 @@
+<section class="content-header">
+    <div class="row">
+        <h5>
+            <?php echo strtoupper($G->act) . ' | '; ?> USUARIOS 
+            <a class="waves-effect blue-grey btn modal-trigger" href="#modal1" name="agregar" id="agregar">Agregar</a>
+        </h5>
+    </div>
+</section>
+
+<table class="highlight striped">
+    <thead>
+        <tr>
+            <th data-field="id">ID</th>
+            <th data-field="nombres">Nombres</th>
+            <th data-field="apellidos">Apellidos</th>
+            <th data-field="nick">Nick</th>
+            <th data-field="rol">Rol</th>
+            <th data-field="acciones" style="text-align: center;">Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <?php
+        foreach ($G->usuarios as $us) {
+            echo "<tr>
+                <td>" . $us['u_id'] . "</td>
+                <td>" . $us['u_nombres'] . "</td>
+                <td>" . $us['u_apellidos'] . "</td>
+                <td>" . $us['u_nick'] . "</td>
+                <td>" . $us['u_rol'] . "</td>
+                    <td style='text-align: center;'><a href='#' class='btn yellow'>Editar</a> <a href='#' class='btn red'>Borrar</a></td>
+            </tr>";
+        }
+        ?>
+    </tbody>
+</table>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <div class="box-body">
+            <form id="frmreg" method="post" class="form-horizontal" action="usuarios">
+                <?php
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    if (!empty($G->error) && $G->error != "ok") {
+                        ?>
+                        <div class="alert alert-danger"><p><?php echo str_replace("ok", "", $G->error); ?></p></div>
+                        <?php
+                    } else {
+                        ?>
+                        <div class="alert alert-success"><p>Se ha creado correctamente el nuevo registro.</p></div>
+                        <?php
+                    }
+                }
+                ?>
+                <div class="section"> 
+                    <div class="row">
+                        <div class="col s12 m6 ">
+                            <div class="input-field col s12 m12">
+                                <input id="nombres" name="nombres" required type="text">
+                                <label for="nombres">Nombres</label>
+                            </div>
+                            <div class="input-field col s12 m12">
+                                <input id="apellidos" name="apellidos" type="text" required="">
+                                <label for="apellidos">Apellidos</label>
+                            </div>
+                            <div class="input-field col s12 m12">
+                                <input id="email" type="email" name="email" class="validate">
+                                <label for="email" data-error="wrong">Correo</label>
+                            </div>
+                            <div class="input-field col s12 m12">
+                                <select style="text-align: center; font-size: 1px;">
+                                    <option value="#">Seleccione tipo</option>
+                                    <option value="1">Administrador(a)</option>
+                                    <option value="3">Usuario(a)</option>
+                                </select>
+                                <label>Tipo</label>
+                            </div>
+                        </div>
+                        <div class="col s12 m6">
+                            <div class="input-field col s12 m12">
+                                <select style="text-align: center">
+                                    <option value="#">Seleccione Rol</option>
+                                    <option value="3">Secretario(a)</option>
+                                    <option value="5">Profesor(a)</option>
+                                    <option value="7">Representante</option>
+                                    <option value="7">Alumno(a)</option>
+                                </select>
+                                <label>Rol</label>
+                            </div>
+                            <div class="input-field col s12 m12">
+                                <input id="nick" name="nick" type="text" >
+                                <label for="nick">Usuario</label>
+                            </div>
+                            <div class="input-field col s12 m12">
+                                <input id="pass" name="pass" type="password" maxlength="30">
+                                <label for="pass">Contrase&ntilde;a</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <button class="btn waves-effect blue right" type="reset" name="borrar">Limpear</button>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <button class="btn waves-effect blue right" type="submit" name="action" value="agregar">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+</div>

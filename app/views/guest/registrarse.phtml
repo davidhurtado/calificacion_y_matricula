@@ -1,0 +1,57 @@
+<?php
+//Cargar el header de la pagina de Guest -->
+$G->title = "Registrarse";
+loadView("guest/header.phtml");
+?>
+
+<style>
+    body{
+        background-image: url('../app/media/images/binario.gif');
+    }
+</style>
+    <div class="form-box" id="login-box">
+        <div class="header">Registrarme</div>
+        <form id="frmreg" method="post" action="registrar">
+            <div class="body bg-gray">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                        <input name="nombres" type="text" id="nombres" class="form-control" placeholder="Nombres" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                        <input name="apellidos" type="text" id="apellidos" class="form-control" placeholder="Apellidos" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                        <input name="nick" type="text" id="nick" class="form-control" pattern="[a-zA-Z0-9]{1,50}" data-valid-max="50" placeholder="Usuario" />
+                    </div>
+                </div>
+                                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                        <input name="pass" type="password" id="pass" class="form-control" placeholder="Contrase&ntilde;a" />
+                    </div>
+                </div>
+                <?php
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    if (!empty($G->error) && $G->error != "ok") {
+                        ?>
+                        <div class="alert alert-danger"><p><?php echo str_replace("ok", "", $G->error); ?></p></div>
+                        <?php
+                    } else {
+                        ?>
+                        <div class="alert alert-success"><p>Se ha registrado correctamente.</p></div>
+                        <?php
+                    }
+                }
+                ?>
+                <input type="submit" name="SubmitRegistro" value="Registrarse"  class="btn bg-olive btn-block">
+                <a href="<?php echo $G->config["w_url"].DS;?>login" class="btn btn-danger btn-block">Ingresar</a>
+            </div>
+        </form>
+    </div>

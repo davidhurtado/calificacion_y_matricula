@@ -1,0 +1,22 @@
+<?php
+$G->title = "Inicio";
+loadView("logged/header.phtml");
+?>
+<div id="main">
+    <div class="wrapper">
+        <aside id="left-sidebar-nav">
+            <?php
+            loadView('logged/' . $G->menu_principal);
+            ?>
+        </aside>
+        <section id="content">
+            <div class="container">
+                <?php
+                loadView('logged/' . $G->contenido);
+                ?>
+            </div>
+        </section>
+    </div>
+</div>
+<?php
+loadView("logged/footer.phtml");
